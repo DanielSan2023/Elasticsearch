@@ -1,6 +1,7 @@
 package com.elasticsearch.service;
 
 import com.elasticsearch.entity.Employee;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface EmployeeService {
     boolean deleteEmployee(String id);
 
     Employee getEmployeeById(String id);
+
+    List<Employee> getEmployeesByName(String name);
+
+    Page<Employee> paginateEmployee(int page, int size);
 }
