@@ -43,16 +43,40 @@ public class EmployeeController {
             return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
-    @GetMapping("/search")
+    @GetMapping("search")
     public ResponseEntity<List<Employee>> getEmployeeByName(@RequestParam String name) {
         List<Employee> employee = employeeService.getEmployeesByName(name);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
-    @GetMapping("/page")
+    @GetMapping("page")
     public ResponseEntity<Page<Employee>> paginateEmployee(@RequestParam int page, @RequestParam int size) {
         Page<Employee> employees = employeeService.paginateEmployee(page, size);
         return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("filter")
+    public ResponseEntity<List<Employee>> filterEmployeesBySalary(@RequestParam double min, @RequestParam double max) {
+        List<Employee> employee = employeeService.filterEmployeesBySalaryRange(min, max);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
+    }
+
+    @GetMapping("/search/match")
+    public ResponseEntity<List<Employee>> searchByNameMatchQuery(@RequestParam String name) {
+        List<Employee> employee = employeeService.searchByNameMatchQuery(name);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
+    }
+
+    @GetMapping("/search/match-range")
+    public ResponseEntity<List<Employee>> searchByNameAndSalaryMatchQuery(@RequestParam String name, @RequestParam double minSalary) {
+        List<Employee> employee = employeeService.searchByNameAndSalaryMatchQuery(name, minSalary);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
+    }
+
+    @GetMapping("/search/range")
+    public ResponseEntity<List<Employee>> searchByRangeSalary(@RequestParam double minSalary, @RequestParam double maxSalary) {
+        List<Employee> employee = employeeService.searchBySalaryRange(minSalary, maxSalary);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

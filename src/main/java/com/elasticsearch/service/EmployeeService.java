@@ -20,4 +20,12 @@ public interface EmployeeService {
     List<Employee> getEmployeesByName(String name);
 
     Page<Employee> paginateEmployee(int page, int size);
+
+    List<Employee> filterEmployeesBySalaryRange(double min, double max);
+
+    List<Employee> searchByNameMatchQuery(String name);
+
+    List<Employee> searchByNameAndSalaryMatchQuery(String name, double minSalary);
+
+    List<Employee> searchBySalaryRange(double minSalary, double maxSalary);
 }

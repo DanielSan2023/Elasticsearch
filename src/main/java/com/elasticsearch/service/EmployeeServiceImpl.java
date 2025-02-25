@@ -68,4 +68,24 @@ public class EmployeeServiceImpl implements EmployeeService {
         PageRequest peageble = PageRequest.of(page, size);
         return employeeRepository.findAll(peageble);
     }
+
+    @Override
+    public List<Employee> filterEmployeesBySalaryRange(double min, double max) {
+        return employeeRepository.findBySalaryBetween(min, max);
+    }
+
+    @Override
+    public List<Employee> searchByNameMatchQuery(String name) {
+        return employeeRepository.findByNameMatchQuery(name);
+    }
+
+    @Override
+    public List<Employee> searchByNameAndSalaryMatchQuery(String name, double minSalary) {
+        return employeeRepository.findByNameMatchQueryAndSalary(name,minSalary);
+    }
+
+    @Override
+    public List<Employee> searchBySalaryRange(double minSalary, double maxSalary) {
+        return employeeRepository.findBySalaryRange(minSalary,maxSalary);
+    }
 }
